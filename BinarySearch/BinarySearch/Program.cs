@@ -11,17 +11,17 @@ namespace BinarySearch
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to Binary search tree problem ");
-            ViewBST();
+            DisplayBinary();
             Console.ReadLine();
         }
 
-        public static void ViewBST()
+        public static void DisplayBinary()
         {
             MyBinaryTree<int> tree = new MyBinaryTree<int>();
-            tree.CreateNode(56);
-            tree.CreateNode(30);
-            tree.CreateNode(70);
-            Console.WriteLine("Display Nodes present in Binary Search Tree");
+            tree.insertNode(56);
+            tree.insertNode(30);
+            tree.insertNode(70);
+            Console.WriteLine("Display Nodes ");
             tree.Display();
         }
     }

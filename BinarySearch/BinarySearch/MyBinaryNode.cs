@@ -9,7 +9,7 @@ namespace BinarySearch
     public class MyBinaryTree<T> where T : IComparable
     {
         public INode<T> root;
-        public void CreateNode(T value)
+        public void insertNode(T value)
         {
             INode<T> newNode = new INode<T>(value);
             if (root == null)
