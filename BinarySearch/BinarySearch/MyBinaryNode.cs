@@ -8,76 +8,97 @@ namespace BinarySearch
 {
     public class MyBinaryTree<T> where T : IComparable
     {
-        public INode<T> root;
+            public INode<T> root;
 
-        public void insertNode(T value)
-        {
-            INode<T> newNode = new INode<T>(value);
-            if (root == null)
+            public void insertNode(T value)
             {
-                root = newNode;
-            }
-            else
-            {
-                INode<T> parent = root;
-                INode<T> current = root;
-                while (true)
+                INode<T> newNode = new INode<T>(value);
+                if (root == null)
                 {
-                    parent = current;
-                    if (current.data.CompareTo(value) >= 0)
+                    root = newNode;
+                }
+                else
+                {
+                    INode<T> parent = root;
+                    INode<T> current = root;
+                    while (true)
                     {
-                        current = current.leftTree;
-                        if (current == null)
+                        parent = current;
+                        if (current.data.CompareTo(value) >= 0)
                         {
-                            parent.leftTree = newNode;
-                            break;
+                            current = current.leftTree;
+                            if (current == null)
+                            {
+                                parent.leftTree = newNode;
+                                break;
+                            }
                         }
-                    }
-                    else
-                    {
-                        current = current.rightTree;
-                        if (current == null)
+                        else
                         {
-                            parent.rightTree = newNode;
-                            break;
+                            current = current.rightTree;
+                            if (current == null)
+                            {
+                                parent.rightTree = newNode;
+                                break;
+                            }
                         }
                     }
                 }
             }
-        }
-        //Display Root Node.
-        public void Root()
-        {
-            do
-            {
-                Console.WriteLine("BST Root Node:" + root.data);
-                break;
-            } while (root != null);
-        }
 
-        /// Displays Nodes in BST
-        public void Display(INode<T> parent)
-        {
-            if (parent != null)
+            public void Root()
             {
-                Display(parent.leftTree);
-                Display(parent.rightTree);
-                Console.WriteLine("{0} is BST Node", parent.data);
+                do
+                {
+                    Console.WriteLine("BST Root Node:" + root.data);
+                    break;
+                } while (root != null);
             }
-        }
 
-        private void Display(object right)
-        {
-            throw new NotImplementedException();
-        }
 
-        public int Size(INode<T> root)
-        {
-            if (root == null)
-                return 0;
-            else
-                return Size(root.leftTree) + 1 + Size(root.rightTree);
-        }
+            public void Display(INode<T> parent)
+            {
+                if (parent != null)
+                {
+                    Display(parent.leftTree);
+                    Display(parent.rightTree);
+                    Console.WriteLine("{0} is BST Node", parent.data);
+                }
+            }
 
-    }
+            private void Display(object right)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int Size(INode<T> root)
+            {
+                if (root == null)
+                    return 0;
+                else
+                    return Size(root.leftTree) + 1 + Size(root.rightTree);
+            }
+            public bool Search(INode<T> root, T key)
+            {
+
+                if (root == null)
+                {
+                    return false;
+                }
+                if (root.data.CompareTo(key) == 0)
+                {
+                    return true;
+                }
+                else if (root.data.CompareTo(key) > 0)
+                {
+                    return Search(root.leftTree, key);
+                }
+                else
+                {
+                    return Search(root.rightTree, key);
+                }
+
+            }
+
+        }
 }
